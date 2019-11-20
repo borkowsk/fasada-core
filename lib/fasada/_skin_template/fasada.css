@@ -1,0 +1,106 @@
+/* treść komentarza, ignorowana przez przegladarkę internetową                                */
+/* https://stackoverflow.com/questions/17042201/how-to-style-input-and-submit-button-with-css */
+/* https://freefrontend.com/css-forms/     https://www.w3schools.com/html/html_forms.asp      */
+
+
+body {
+        background-color: lightblue;
+        color: rgb(100,100,120);
+        font-size: 11pt;
+}
+
+h1 {
+        color: darkgray;
+        margin-left: 20px;
+}
+
+b.fasada_path {
+        font-family: Courier;
+        font-variant: normal;
+        font-weight: bold;
+}
+
+i.fasada_val {
+       font-family:  Arial; 
+       font-variant: normal;
+       font-style: oblique;
+}
+
+a {
+        text-decoration: none;
+}
+
+a:link {
+        color: rgb(0,128,0); 
+}
+
+a:visited {
+        color: rgb(100,200,0); 
+}
+
+a.fasada_action {
+        background-color: white; 
+        padding: 1px 4px;  
+        font-weight: bold;
+        font-size: 12pt;
+        font-family: monospace;
+        border-radius: 8px; 
+}
+
+a.fasada_view {
+        background-color: yellow; 
+        padding: 1px 4px;  
+        font-weight: bold;
+        font-size: 12pt;
+        font-family: monospace;
+        border-radius: 8px; 
+}
+
+
+input[type=submit] {
+        font-weight: bold;
+        font-size: 13pt;
+        padding: 4px 13px; 
+        background: yellow; 
+        color: navy;
+        border:2 none;
+        cursor:pointer;
+        font-family: monospace;
+        border-radius: 10px; 
+}
+
+input[type=text] {
+        font-size: 10pt;
+        padding: 4px 10px; 
+        background: white; 
+        border: 1 none;
+        font-family: Arial;
+        border-radius: 10px; 
+}
+
+textarea {
+        font-size: 10pt;
+        padding: 4px 10px; 
+        background: white; 
+        border: 1 none;
+        font-family: Arial;
+        border-radius: 10px; 
+}
+
+form {
+        background-color: orange;   
+        padding: 10px;    
+}
+
+form.fasada_form {
+        padding:15px;  
+        background-color: lightgreen; 
+        color: navy;
+        font-size:   11pt;
+        font-variant: small-caps;
+        cursor:help;
+        font-family: monospace;
+        border-radius: 10px; 
+}
+
+

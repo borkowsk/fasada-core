@@ -15,4 +15,6 @@ Trzeba ją też zainstalować:
 
 *__sudo apt-get install libmagic-dev__*
 
+Projekt oddzielony od starej wersji wg. receptury:
+https://help.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository
 

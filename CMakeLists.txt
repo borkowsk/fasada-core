@@ -30,6 +30,10 @@ include_directories(
 #How to make version.h from GIT versioning?
 #See: https://gist.github.com/rkitover/3fe24bbf8f3a0e32a19259aca384680a
 
+add_executable( hello
+    "${SRCPATH}/tools/hello/hello_main.cpp"
+                )
+
 add_executable( treeserver
     "${SRCPATH}/treeserver1/treeserver1_main.cpp"
                 )
@@ -109,6 +113,7 @@ add_definitions( "-DDISTRIB_ID=${DISTRIB_ID}"  "-DDISTRIB_RELEASE=${DISTRIB_RELE
 target_compile_options( fasada     PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( treeserver PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( treeedit   PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
+target_compile_options( hello      PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( indexer    PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( wwwserver  PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( facebookspec     PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
@@ -140,6 +145,16 @@ target_link_libraries(treeedit  LINK_PUBLIC
     ${Boost_PROGRAM_OPTIONS_LIBRARY}
     ${Boost_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
+    rt
+    )
+
+target_link_libraries(hello  LINK_PUBLIC
+    fasada
+    ${Boost_SYSTEM_LIBRARY}
+    ${Boost_PROGRAM_OPTIONS_LIBRARY}
+    ${Boost_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+    magic
     rt
     )
 

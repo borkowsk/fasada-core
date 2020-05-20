@@ -8,16 +8,12 @@
 ///  See CURRENT licence file!
 ///
 
-//Local server of "fasada" resources stored in json files
-//
-//Based on examples from: 
-//      http://techgate.fr/boost-property-tree/
-//      https://stackoverflow.com/questions/12346787/send-complex-data-structure-via-boost-message-queue
-//And docs:
-//      https://www.boost.org/doc/libs/1_71_0/doc/html/boost/interprocess/message_queue_t.html
-//
-// Treeserver, which loads the json file in a ptree and serve it's content
-#define UNIT_IDENTIFIER "treeserver"
+//Local demo server of "fasada"
+//Just answer for READ REQUEST with message
+//set up in previous WRITE REQUEST
+
+#define UNIT_IDENTIFIER "hello"
+
 #include "facebookspec.h"
 #include "fasada.hpp"
 #include "memory_pool.h"
@@ -33,7 +29,7 @@
 using namespace fasada;
 
 string MyName("HELLO-");//Process name
-const char MyMemPoolName[]="HelloEmp";
+const char* MyMemPoolName=fasada::PRIMARY_EMP;
 
 std::string hello_msg="Hello from fasada demo application!";
 std::string private_dir="../private/";
@@ -82,28 +78,25 @@ void _do_RorW_request(const string& request,fasada::MemoryPool& MyPool,bool isWr
             (*stringToShare)+=p.second.c_str();
             (*stringToShare)+="\n";
         }
-
+        ////////////////////////////////////////////////////////////////////
         try{
             if(!isWriter)
             {
-                //URL["&processor"]
                 val_string& path=URL["&path"];
-                //(*stringToShare)+="path:"+path+"\t";
-                //Pierszy slash ścieżki stanowi problem...
-                //pt::ptree& branch =( path=="/" ? root : root.get_child(pt::ptree::path_type{path.c_str()+1, '/'}) );
-                (*stringToShare)+="\n<H1>"+hello_msg+"</H1>\n";
+                (*stringToShare)+=ipc::string(EXT_PRE)+"htm\n";
+                (*stringToShare)+="<HTML>\n<H1>"+hello_msg+"</H1>\n</HTML>"+MEM_END;
             }
             else
             {
                 if(URL["&processor"][0]=='!')
                     URL["&processor"]=URL["&processor"].substr(1);
-                //URL["&processor"]
-                val_string& path=URL["&path"];
+                hello_msg=URL["&processor"];//URL["&path"];
                 //Pierszy slash ścieżki stanowi problem...
                 //pt::ptree& branch =( path=="/" ? root : root.get_child(pt::ptree::path_type{path.c_str()+1, '/'}) );
-                (*stringToShare)+="\n"+hello_msg+"\n";
+                (*stringToShare)+="\n"+hello_msg+"\n"+MEM_END;
             }
         }
+        /////////////////////////////////////////////////////////////////////
         catch(const pt::ptree_error& exc)
         {
             *stringToShare+=exc.what();

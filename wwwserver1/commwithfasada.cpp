@@ -18,6 +18,7 @@
 /// file types used in WWW communication.
 ///
 #define UNIT_IDENTIFIER "wwwserver-for-fasada"
+
 #include "request.hpp"
 #include "reply.hpp"
 #include "tree_types.h"
@@ -45,21 +46,26 @@ extern "C" //Te dwie funcje do eksportowania jako gole nazwy
 class FasadaKeepAndExit
 {
     string  MyName;
+    string  MemPoolName;
     fasada::MemoryPool& MyMemPool;//Udostępnialna kopia zabezpieczanej zmiennej
 public:
     FasadaKeepAndExit(fasada::MemoryPool& MyPool):
-        MyMemPool(MyPool),MyName("WWWSERVER1-")
+        MyMemPool(MyPool),MyName("WWWSERVER1-"),MemPoolName(PRIMARY_EMP)
     {
         MyName+=boost::lexical_cast<string>(getpid());
         //The first data may be used for checking if it is a valid treeserver
+        std::cerr<<"Connecting to fasada server..."<<std::endl;
         std::pair<ShmString*, managed_shared_memory::size_type> res;
-        res = MyMemPool->find<ShmString>("TreeServerEmp");
+
+        res = MyMemPool->find<ShmString>(MemPoolName.c_str());
 
         if(res.first==nullptr)
-            throw interprocess_exception("A proper TREESERVER not found!");
+            throw interprocess_exception("A proper fasada server not found!");
 
         if(res.second!=1)
-            throw interprocess_exception("Incompatible TREESERVER found!");//Nie spodziewa się tablicy!
+            throw interprocess_exception("Incompatible fasada server found!");//Nie spodziewa się tablicy!
+
+        std::cerr<<"Fasada server connected"<<std::endl;
 
         //Send Hello to server
         string Msg("HelloFrom:");

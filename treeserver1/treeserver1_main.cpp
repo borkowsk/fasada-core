@@ -38,6 +38,7 @@
 using namespace fasada;
 
 string MyName("TREESERVER-");//Process name
+const char* MyMemPoolName=fasada::PRIMARY_EMP;
 
 string debug_path="/data/wb/SCC/working_copies/facies/private/index.json";
                       ///"/data/wb/SCC/working_copies/facies/private/pages/Memetyka/posts/posts_1.json";
@@ -280,7 +281,7 @@ int main(int argc, char* argv[])
 
         ShmCharAllocator charallocator(MyMemPool.segm().get_segment_manager());
         //do{
-        ShmString *stringToShare = MyMemPool->construct<ShmString>("TreeServerEmp")(charallocator);
+        ShmString *stringToShare = MyMemPool->construct<ShmString>(MyMemPoolName)(charallocator);
         *stringToShare=
                 (
                     string("FASADA treeserver version 0.01; PID:")
@@ -310,7 +311,7 @@ int main(int argc, char* argv[])
             }
        }while(NumberOfClients>0);
 
-        MyMemPool.free_data("TreeServerEmp");
+        MyMemPool.free_data(MyMemPoolName);
         pt::write_json("output.fac",root);
 
         // Then write the Boost property tree to an output XML file

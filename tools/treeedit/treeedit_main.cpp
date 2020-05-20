@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
             //The first data may be used for checking if it is a valid treeserver
             std::pair<ShmString*, managed_shared_memory::size_type> res;
             try{
-                res = MyMemPool->find<ShmString>("TreeServerEmp");
+                res = MyMemPool->find<ShmString>(fasada::PRIMARY_EMP);
                 if(res.first==nullptr) throw interprocess_exception("A proper TREESERVER not found!");
                 std::cerr<<"Recived "<<res.second<<" string(s), the 1st is: \n\t'"<<*res.first<<"'"<<std::endl;
                 if(res.second!=1)  throw interprocess_exception("Incompatible TREESERVER found!");//Nie spodziewa się tablicy!

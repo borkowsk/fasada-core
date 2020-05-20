@@ -24,6 +24,10 @@ const unsigned    MSGQ_SIZE=1000;
 const char* const MEM_POOL_NAME="FasadaDefMemoryPool";
 const unsigned    MEM_POOL_SIZE=0xfffffff;
 
+///Default Emp
+const char* const PRIMARY_EMP="PrimaryServerEmp";
+
+
 ///Value of this const mark finish of any of tree-processors tasks.
 const char* const MEM_END="@T@h@e@E@n@d@";
 const char* const EXT_PRE="@E@X@T=";//See for MIME types:

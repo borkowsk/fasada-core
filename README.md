@@ -4,7 +4,10 @@ File: _Fasada-core README.txt_
 
 Project FASADA version 0.011 
 ====================================================
-FASADA to napisany w C++ zestaw bibliotek i aplikacji (mini-framework) umożliwiający komunikację na wzór WWW pomiędzy przystosowanymi programami, a za pośrednictwem własnego mini-serwera WWW także z dowolnymi programami rozumiejącymi protokół HTTP, przynajmniej w sieci lokalnej.
+FASADA to napisany w C++ zestaw bibliotek i aplikacji (mini-framework) umożliwiający komunikację na wzór WWW 
+pomiędzy przystosowanymi programami, a za pośrednictwem własnego mini-serwera WWW także z dowolnymi programami 
+rozumiejącymi protokół HTTP, przynajmniej w sieci lokalnej.
+Komunikacja pomiędzy procesami w obrębie hosta odbywa się za pomoca pamięci współdzielonej więc jest bardzo szybka.
 
 LINKI ZEWNĘTRZNE PROJEKTU
 =========================

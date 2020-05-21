@@ -62,13 +62,21 @@ add_library(fasada
     #base
     "${SRCPATH}/lib/fasada/fasada.cpp"
     "${SRCPATH}/lib/fasada/format_toolbox.cpp"
-    "${SRCPATH}/lib/fasada/tree_processor.cpp"
-    "${SRCPATH}/lib/fasada/tree_attributes.cpp"
     "${SRCPATH}/lib/fasada/form_processor.cpp"
     "${SRCPATH}/lib/fasada/saver_processor.cpp"
     "${SRCPATH}/lib/fasada/loader_processor.cpp"
-    #first set of processors
     "${SRCPATH}/lib/fasada/processor_info.cpp"
+    #general
+    "${SRCPATH}/lib/fasada/http/URLparser.cpp"
+    "${SRCPATH}/lib/fasada/tree/magic_file_tester.cpp"
+    )
+
+add_library(fsdtree 
+    "${SRCPATH}/lib/fasada/tree/tree.cpp"
+    "${SRCPATH}/lib/fasada/tree_processor.cpp"
+    "${SRCPATH}/lib/fasada/tree_attributes.cpp"
+    "${SRCPATH}/lib/fasada/register_processors.cpp"
+    #first set of processors
     "${SRCPATH}/lib/fasada/processor_get.cpp"
     "${SRCPATH}/lib/fasada/processor_set.cpp"
     "${SRCPATH}/lib/fasada/processor_add.cpp"
@@ -82,21 +90,17 @@ add_library(fasada
     "${SRCPATH}/lib/fasada/loader_csv.cpp"
     "${SRCPATH}/lib/fasada/loader_json.cpp"
     #generated processors
-    "${SRCPATH}/lib/fasada/view_csv.cpp"
     "${SRCPATH}/lib/fasada/run_on_tree.cpp"
     "${SRCPATH}/lib/fasada/save_as_txt.cpp"
     "${SRCPATH}/lib/fasada/save_as_csv.cpp"
     "${SRCPATH}/lib/fasada/save_as_xml.cpp"
     "${SRCPATH}/lib/fasada/save_as_json.cpp"
+    #viewers
     "${SRCPATH}/lib/fasada/view_processor.cpp"
-    #general
-    "${SRCPATH}/lib/fasada/register_processors.cpp"
-    "${SRCPATH}/lib/fasada/http/URLparser.cpp"
-    "${SRCPATH}/lib/fasada/tree/tree.cpp"
-    "${SRCPATH}/lib/fasada/tree/magic_file_tester.cpp"
+    "${SRCPATH}/lib/fasada/view_csv.cpp"
     )
 
-add_library(facebookspec
+add_library(fsdfacebook
     "${SRCPATH}/lib/facebookspec/facebookspec.cpp"
     "${SRCPATH}/lib/facebookspec/loader_facebookjson.cpp"
     )
@@ -111,17 +115,18 @@ endif(NOT DEFINED DISTRIB_RELEASE)
 
 add_definitions( "-DDISTRIB_ID=${DISTRIB_ID}"  "-DDISTRIB_RELEASE=${DISTRIB_RELEASE}" )
 target_compile_options( fasada     PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
+target_compile_options( fsdtree    PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
+target_compile_options( fsdfacebook     PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( treeserver PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( treeedit   PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( hello      PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( indexer    PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
 target_compile_options( wwwserver  PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
-target_compile_options( facebookspec     PRIVATE "${CMAKE_CXX_FLAGS}" "-std=c++11" )
-
 
 target_link_libraries(treeserver LINK_PUBLIC
+    fsdfacebook
+    fsdtree
     fasada
-    facebookspec
     ${Boost_SYSTEM_LIBRARY}
     ${Boost_PROGRAM_OPTIONS_LIBRARY}
     ${Boost_LOCALE}

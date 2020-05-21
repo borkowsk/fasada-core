@@ -10,6 +10,7 @@
 #define UNIT_IDENTIFIER "treeedit"
 //Local tree console editor for "fasada"
 //
+#include "fasada.hpp"
 #include "memory_pool.h"
 #include <boost/lexical_cast.hpp>
 #include <boost/exception/diagnostic_information.hpp>

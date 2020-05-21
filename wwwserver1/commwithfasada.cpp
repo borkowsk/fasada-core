@@ -21,7 +21,7 @@
 
 #include "request.hpp"
 #include "reply.hpp"
-#include "tree_types.h"
+#include "fasada_types.h"
 #include "memory_pool.h"
 #include "mime_types.hpp"
 #include <boost/lexical_cast.hpp>

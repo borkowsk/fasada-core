@@ -5,7 +5,8 @@
 /// 
 /// See licence file!
 ///
-
+/// SEE ALSO ALTERNATIVE: https://www.mongodb.com/
+///
 #ifndef FASADA_HPP
 #define FASADA_HPP
 
@@ -16,7 +17,7 @@
 #define FASADA_VERSION (0.01)
 #define FASADA_VERSION_STR "0.01"
 
-// SEE ALSO: https://www.mongodb.com/
+
 
 #define __TO_STRING_HELPER(y) #y
 #define STRING_FROM_DEFINE(x) __TO_STRING_HELPER(x)
@@ -33,8 +34,8 @@
 #define UNIT_IDENTIFIER "Unit" __FILE__
 #endif
 
-#include "tree_types.h"
-#include "tree_consts.h"
+#include "fasada_consts.h"
+#include "fasada_types.h"
 
 namespace fasada
 {
@@ -42,14 +43,9 @@ extern const char* _distribId;//= STRING_FROM_DEFINE(DISTRIB_ID) ;
 extern const float _distribRe;//= DISTRIB_RELEASE ;
 extern const float _version;//=FASADA_VERSION;
 extern const char* _version_str;//=FASADA_VERSION_STR;
-static const char* _compiled= UNIT_IDENTIFIER " compiled for " STRING_FROM_DEFINE(DISTRIB_ID) " " STRING_FROM_DEFINE(DISTRIB_RELEASE) " "  __DATE__ ", " __TIME__ ";";//Diferent for any compilation unit
 
-void init(bool WithWriting);//INITIALIZE THE FASADA LIBRARY
-
-void register_processors(bool WithWriters); //Function for registering default set of tree_processors
-                            //located in fasada.a/lib/so
-
-bool writing_enabled();     //Is writing to tree allowed?
+static const char* _compiled= UNIT_IDENTIFIER " compiled for " STRING_FROM_DEFINE(DISTRIB_ID) " " STRING_FROM_DEFINE(DISTRIB_RELEASE) " "  __DATE__ ", " __TIME__ ";";
+                              //Diferent for any compilation unit
 
 }//namespace "fasada"
 

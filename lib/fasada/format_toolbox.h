@@ -69,9 +69,6 @@ public:
         std::string  getActionsPanel(URLparser& request);
 
     static
-        std::string  getNodePanel(const pt::ptree& node,const std::string& fullpath,URLparser& request);
-
-    static
         std::string  preprocessRawTxt(const std::string& tmp);//Preprocess links and other markers into HTML tags & unicode chars
 
     /// Informative functions

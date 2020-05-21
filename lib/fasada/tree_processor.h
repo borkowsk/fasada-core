@@ -16,13 +16,18 @@
 #endif
 
 #include "format_toolbox.h"
-#include "tree_types.h"
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/exceptions.hpp>
+#include "fasada_types.h"
+#include "fasada_tree.h"
 #include <string>
 
 namespace fasada
 {
+    void init(bool WithWriting);//INITIALIZE THE FASADA_TREE LIBRARY
+                                //mostly registers default set of procesors
+    void register_processors(bool WithWriters); //Function for registering default set of tree_processors
+                                //located in fasada.a/lib/so
+    bool writing_enabled();     //Is writing to tree (?) allowed?
+
     /// The boost::ptree have its own exception class ptree_error
     /// and derived class of exceptions.
     /// but sometimes tree_processor have to throw on error
@@ -34,24 +39,14 @@ namespace fasada
         public:
             tree_processor_exception(std::string msg):pt::ptree_error(msg)
             {}
-
             ~tree_processor_exception() throw() {}
     };
 
-    /// This class ...
-    /// ...
-    class tree_processor : public format_toolbox //
+    /// This class is basic class for all tree processors
+    class tree_processor : public format_toolbox
     {
     public: //SUBTYPES
         enum Category {CONTROL=4,WRITER_READER=3,WRITER=2,READER=1};
-
-    //Category operator + (Category one,Category two) ???
-    //{ return Category(One+Two);}
-    //
-    //error: ‘fasada::tree_processor::Category 
-    //        fasada::tree_processor::operator+(fasada::tree_processor::Category, fasada::tree_processor::Category)’
-    //
-    // must take either zero or one argument
 
     protected://Configuration
         std::string  procName;
@@ -89,6 +84,16 @@ namespace fasada
         //Does some work, calls _implement_read, cleans, adds MEM_END & returns
         void write_tree(ShmString& o,pt::ptree& top,URLparser& request);//may throw TODO writeToTree?
 };
+
+    //Category operator + (Category one,Category two) ???
+    //{ return Category(One+Two);}
+    //
+    //error: ‘fasada::tree_processor::Category
+    //        fasada::tree_processor::operator+(fasada::tree_processor::Category,
+    //                                          fasada::tree_processor::Category)’
+    //
+    // must take either zero or one argument ???
+    //W sumie można i tak się bez niego obyć
 
 }//namespace "fasada"
 #endif // TREE_PROCESSOR_H

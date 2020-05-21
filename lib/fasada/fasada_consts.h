@@ -27,19 +27,21 @@ const unsigned    MEM_POOL_SIZE=0xfffffff;
 ///Default Emp
 const char* const PRIMARY_EMP="PrimaryServerEmp";
 
-
 ///Value of this const mark finish of any of tree-processors tasks.
 const char* const MEM_END="@T@h@e@E@n@d@";
 const char* const EXT_PRE="@E@X@T=";//See for MIME types:
-    //https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+      //https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
 
 ///Some values for html output
 #define STR_DEFAULT_LEN_OF_NAME "14"
 const unsigned UINT_DEFAULT_LEN_OF_NAME=14;
+
 #define STR_DEFAULT_LEN_OF_SUBPATH "64"
 const unsigned UINT_DEFAULT_LEN_OF_SUBPATH=64;
+
 #define STR_WIDTH_MAX_OF_FIELD "80"
 const unsigned UINT_WIDTH_MAX_OF_FIELD=80;
+
 #define STR_DEFAULT_FILTER "*"
 
 }//namespace "fasada"

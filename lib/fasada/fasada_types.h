@@ -6,8 +6,8 @@
 /// See licence file!
 ///
 
-#ifndef TREE_TYPES_H
-#define TREE_TYPES_H
+#ifndef FASADA_TYPES_H
+#define FASADA_TYPES_H
 
 #if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
@@ -17,8 +17,6 @@
 #include <boost/interprocess/allocators/allocator.hpp>
 #include <boost/interprocess/containers/vector.hpp>
 #include <boost/interprocess/containers/string.hpp>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/exceptions.hpp>
 #include <map>
 //#include <string_view> //string_view? https://stackoverflow.com/questions/50608392/using-const-char-as-key-for-map-unordered-map
 
@@ -30,7 +28,6 @@
 namespace fasada
 {
     namespace ipc = boost::interprocess;
-    namespace pt = boost::property_tree;
 
 #if(0)
     using  ShmCharAllocator   = ipc::allocator<char, ipc::managed_shared_memory::segment_manager>;
@@ -65,11 +62,5 @@ namespace fasada
         return t+=s.c_str();
     }
 
-    /// Each node in fasada data files may have special subnodes called properties saved under xmlattr subtree
-    /// Most important properties is "_source", "loader", "viewer", "saver", "alternative_savers", "oth_actions".
-    /// Standard attributes are presented in HTML by _implement_attributes() method
-    void insert_property(pt::ptree& Node,const std::string& FasadaPropertyName,const std::string& PropertyValue);
-    const std::string& get_property(const pt::ptree& Node,const std::string& FasadaPropertyName,const std::string& WnenNotPresent);
-
 }//namespace "fasada"
-#endif // TREE_TYPES_H
+#endif

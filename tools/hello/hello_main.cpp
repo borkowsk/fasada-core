@@ -97,11 +97,6 @@ void _do_RorW_request(const string& request,fasada::MemoryPool& MyPool,bool isWr
             }
         }
         /////////////////////////////////////////////////////////////////////
-        catch(const pt::ptree_error& exc)
-        {
-            *stringToShare+=exc.what();
-            *stringToShare+=MEM_END;
-        }
         catch(const std::runtime_error& exc)
         {
             *stringToShare+=exc.what();
@@ -245,13 +240,6 @@ int main(int argc, char* argv[])
                     string("FASADA HELLO version 0.01; PID:")
                         +boost::lexical_cast<string>(getpid())
                     ).c_str();
-
-        //Dopiero tu jest pewność że wewnętrzne struktury static zostały zainicjalizowane.
-        //No i że w ogóle warto ładować procesory danych
-        fasada::init(true);//starting fasada functionality with
-
-        //facebook::register_processors();
-        //std::cout<<"All data processors registered."<<std::endl;
 
         //receive & process the request!
         do{

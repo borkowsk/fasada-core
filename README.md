@@ -40,6 +40,14 @@ Inne technikalia
 Ta wersja oddzielona od starszej wersji wg. poniższej receptury: 
 https://help.github.com/en/github/using-git/splitting-a-subfolder-out-into-a-new-repository
 
+Zwykle używane jako submodule innych projektów. Zatem poniższe linki mogą się przydać:
+
+https://git-scm.com/docs/git-submodule#Documentation/git-submodule.txt-update--init--remote-N--no-fetch--no-recommend-shallow-f--force--checkout--rebase--merge--referenceltrepositorygt--depthltdepthgt--recursive--jobsltngt--ltpathgt82308203
+
+https://stackoverflow.com/questions/1777854/how-can-i-specify-a-branch-tag-when-adding-a-git-submodule
+
+
+
 CO ZROBIĆ GDY ZMIENI SIĘ NAZWA REPOZYTORIUM? 
 https://www.linuxquestions.org/questions/programming-9/git-my-remote-repository-moved-how-do-i-tell-my-local-repo-to-use-the-new-one-781785/
 

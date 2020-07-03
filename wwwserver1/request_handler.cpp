@@ -36,11 +36,13 @@ request_handler::request_handler(const std::string& doc_root)
 
 void request_handler::handle_request(const request& req, reply& rep)
 {
-  std::cout<<"Request: "<<req.uri<<std::endl;
+  std::cout<<"\nREQUEST-URI: "<<req.uri<<std::endl;
+  std::cout<<"METHOD: "<<req.method<<std::endl;
   std::cout<<"HTTP: "<<req.http_version_major<<"."<<req.http_version_minor<<std::endl;
-  std::cout<<"methed: "<<req.method<<std::endl;
+  std::cout<<"Processed: "<<req.processed<<std::endl;
+  std::cout<<"HEADERS: "<<std::endl;
   for(auto h:req.headers)
-      std::cout<<h.name<<" : "<<h.value<<std::endl;
+      std::cout<<"\t'"<<h.name<<"' : "<<h.value<<std::endl;
 
   //COMMUNICATION WITH fasada IS ONLY IN THIS FUNCTION:
   //    bool communicate_with_fasada(const request& req, reply& rep);
@@ -58,6 +60,7 @@ void request_handler::handle_request(const request& req, reply& rep)
 
   // Decode url to path.
   std::string request_path;
+
   if (!url_decode(req.uri, request_path))
   {
     rep = reply::stock_reply(reply::bad_request);

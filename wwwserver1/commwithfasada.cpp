@@ -35,7 +35,8 @@ using namespace fasada;
 namespace http { //TO DO KASACJI?
 namespace server { //DO ZAMIANY NA "fasada"?
 
-const unsigned MILLISECONDS_BW=100;
+const unsigned MILLISECONDS_BW=100;//ms for waiting for continuation of precessing outside wwwserver
+const char     FINAL_CMD[128]="/!!!!";//SPECIAL!!!
 
 extern "C" //Te dwie funcje do eksportowania jako gole nazwy
 {
@@ -210,15 +211,26 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
     {
         static fasada::MemoryPool& MyMemPool=do_when_first_time();
 
-        if(curr_request.uri=="/!!!!")//SPECIAL!!!
+        if(curr_request.uri==FINAL_CMD)//SPECIAL!!!
         {
             FasadaConnection=nullptr;//deallocation means close connection with treeserver!
             exit(-9999);//DEBUG exit of wwwserver
         }
 
         //Właściwa obsługa zapytania
+        if(curr_request.method=="POST" || curr_request.method=="post")
+        {
+           std::cout<<"POST method detected!"<<std::endl;
+           for(auto a:curr_request.posted_content)
+               std::cout<<a;
+           std::cout<<std::endl;
+           //WHAT ABOUT TRANSFERING THE POSTED DATA???
+           // TODO !!!
+        }
+
         string req_uri="http://"+host+":"+port;//DEBUG
         req_uri+=curr_request.uri.c_str();
+        std::cerr<<FasadaConnection->Name()<<" sending <<<"<<req_uri<<">>>"<<std::endl;
 
         if( req_uri.find("!",0)!=req_uri.npos )//marker że "zapis" to ! przed nazwą processora
             MyMemPool.send_request(req_uri,MemoryPool::ContentType::Write);

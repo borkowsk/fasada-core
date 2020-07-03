@@ -15,6 +15,7 @@
 #define HTTP_REQUEST_PARSER_HPP
 
 #include <tuple>
+#include "request.hpp" //WBorkowski
 
 namespace http {
 namespace server {
@@ -42,9 +43,11 @@ public:
   std::tuple<result_type, InputIterator> parse(request& req,
       InputIterator begin, InputIterator end)
   {
+    req.processed=0;//WBorkowski
     while (begin != end)
     {
       result_type result = consume(req, *begin++);
+      req.processed++;//WBorkowski
       if (result == good || result == bad)
         return std::make_tuple(result, begin);
     }

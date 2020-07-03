@@ -17,6 +17,8 @@
 #include "connection_manager.hpp"
 #include "request_handler.hpp"
 
+//#include <iostream> //DEBUG
+
 namespace http {
 namespace server {
 
@@ -45,13 +47,24 @@ void connection::do_read()
       [this, self](boost::system::error_code ec, std::size_t bytes_transferred)
       {
         if (!ec)
-        {
+        {                                    assert(buffer_.max_size()>bytes_transferred);
           request_parser::result_type result;
           std::tie(result, std::ignore) = request_parser_.parse(
               request_, buffer_.data(), buffer_.data() + bytes_transferred);
 
           if (result == request_parser::good)
           {
+            if(request_.method=="POST")//Handling POST method added by W.Borkowski (2020-07-04)
+            {
+                auto begin=buffer_.data();
+                auto end=buffer_.data();
+                begin+=request_.processed;
+                end+=bytes_transferred;
+                //std::cout<<"POSTed content... ";
+                request_.posted_content.reserve(bytes_transferred-request_.processed);
+                request_.posted_content.insert(request_.posted_content.begin(),begin,end);
+                //std::cout<<"N="<<request_.posted_content.size()<<std::endl;
+            }
             request_handler_.handle_request(request_, reply_);
             do_write();
           }

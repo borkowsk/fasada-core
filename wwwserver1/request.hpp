@@ -30,7 +30,7 @@ struct request
   int http_version_minor;
   std::vector<header> headers;
   unsigned processed;//W.Borkowski
-  std::vector<char> posted_content;//W.Borkowski
+  std::string posted_content;//W.Borkowski
 };
 
 } // namespace server

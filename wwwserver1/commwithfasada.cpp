@@ -30,10 +30,10 @@
 #include <string>
 #include <cctype>
 
-using namespace fasada;
-
 namespace http { //TO DO KASACJI?
 namespace server { //DO ZAMIANY NA "fasada"?
+
+using namespace fasada;
 
 const unsigned MILLISECONDS_BW=100;//ms for waiting for continuation of precessing outside wwwserver
 const char     FINAL_CMD[128]="/!!!!";//SPECIAL!!!
@@ -217,19 +217,27 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
             exit(-9999);//DEBUG exit of wwwserver
         }
 
-        //Właściwa obsługa zapytania
-        if(curr_request.method=="POST" || curr_request.method=="post")
-        {
-           std::cout<<"POST method detected!"<<std::endl;
-           for(auto a:curr_request.posted_content)
-               std::cout<<a;
-           std::cout<<std::endl;
-           //WHAT ABOUT TRANSFERING THE POSTED DATA???
-           // TODO !!!
-        }
 
+        //Właściwa obsługa zapytania
         string req_uri="http://"+host+":"+port;//DEBUG
         req_uri+=curr_request.uri.c_str();
+
+        //Jeśli POST to trzeba umieścić dane MemoryPool
+        if(curr_request.method=="POST" || curr_request.method=="post")
+        {
+           ShmCharAllocator charallocator(MyMemPool->get_segment_manager());
+           std::cout<<"POST method detected!"<<std::endl;
+
+           //TRANSFERING THE POSTED DATA
+           ShmString *postedDataString = MyMemPool->construct<ShmString>( ("POSTED_"+req_uri).c_str() )(charallocator);
+           *postedDataString+=curr_request.posted_content.c_str();
+
+           for(auto a:*postedDataString)
+               std::cout<<a;
+           std::cout<<std::endl;
+        }
+
+
         std::cerr<<FasadaConnection->Name()<<" sending <<<"<<req_uri<<">>>"<<std::endl;
 
         if( req_uri.find("!",0)!=req_uri.npos )//marker że "zapis" to ! przed nazwą processora
@@ -250,6 +258,12 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
         else
         {
             read_answer(curr_reply,response,req_uri);
+            //Usuniecie danych POST (a jeśli przedtem były usunięte?)
+            //Albo nie zdążył odczytać?
+            if(curr_request.method=="POST" || curr_request.method=="post")
+            {
+                MyMemPool.free_data( ("POSTED_"+req_uri).c_str() );
+            }
             return true; //COŚ ZOSTAŁO ODEBRANE - Z PUNKTU WIDZENIA SERWERA OK
                          //bo ma co wysyłać, więc może kontynuować LANG?
         }

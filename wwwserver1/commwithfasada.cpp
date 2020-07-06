@@ -219,7 +219,7 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
 
 
         //Właściwa obsługa zapytania
-        string req_uri="http://"+host+":"+port;//DEBUG
+        string req_uri="http://"+host+":"+port;//DEBUG?
         req_uri+=curr_request.uri.c_str();
 
         //Jeśli POST to trzeba umieścić dane MemoryPool
@@ -231,10 +231,8 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
            //TRANSFERING THE POSTED DATA
            ShmString *postedDataString = MyMemPool->construct<ShmString>( ("POSTED_"+req_uri).c_str() )(charallocator);
            *postedDataString+=curr_request.posted_content.c_str();
-
-           for(auto a:*postedDataString)
-               std::cout<<a;
-           std::cout<<std::endl;
+           req_uri+="?method=POST";
+           //for(auto a:*postedDataString)std::cout<<a;std::cout<<std::endl;//DEBUG
         }
 
 

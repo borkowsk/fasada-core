@@ -165,22 +165,24 @@ namespace fasada
     //May throw on errors!
     {
         using split_vector_type=vector< string >;
-        boost::regex ex(URLpattern);//TODO -globalize this variable? Or maybe static would be enogh?
+        boost::regex ex(URLpattern);//TODO -globalize this variable? Or maybe static would be enogh? TODO
         boost::cmatch what;
 
         bakURL=URL;
         this->clear();
 
+        //cout<<"URL ";//DEBUG!!!
         if(boost::regex_match(URL.c_str(), what, ex))
         {
+            //cout<<"MATCHED!"<<endl;//DEBUG
             string protocol = string(what[1].first, what[1].second);
             string domain   = urlDecode(string(what[2].first, what[2].second));
             string port     = string(what[3].first, what[3].second);
             string path     = urlDecode(string(what[4].first, what[4].second));
             string query    = urlDecode(string(what[5].first, what[5].second));
             bool   proc_set=false;
-            /*cout << protocol <<' '<< domain <<' '<< port <<' '<< path <<' '<< query << endl;*/
-            //cout << "'"<< query << "'" << endl;
+            //cout << protocol <<"¦"<< domain <<"¦"<< port <<"¦"<< path <<"¦"<< query << endl;//DEBUG
+
             (*this)["&protocol"]=protocol;
             (*this)["&domain"]=domain;
             (*this)["&port"]=port;
@@ -243,6 +245,13 @@ namespace fasada
                 (*this)["&extension"]=path.substr(pos2+1);
             }
 
+            //cout << (*this)["&protocol"] <<"¦"<< (*this)["&domain"] <<"¦"<< (*this)["&port"] <<"¦"<< (*this)["&path"] <<"¦"<< (*this)["&query"]<<"||" //<< endl;//DEBUG
+            //     << (*this)["&processor"] <<"¦"<<(*this)["&extension"]<< endl;//DEBUG
+        }
+        else
+        {
+            cout<<"SPLIT FALIED FOR \""<<URL<<'"'<<endl;//DEBUG
+            //reise exception? TODO?
         }
     }
 

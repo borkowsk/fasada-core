@@ -139,6 +139,9 @@ public:
         string                     data;
         data.resize(fasada::MSG_MAX_LEN);
         request_queue.receive(&data[0],fasada::MSG_MAX_LEN,recvd_size,priority);        assert(recvd_size<fasada::MSG_MAX_LEN);
+                                                                                        assert(priority==ContentType::Control
+                                                                                            || priority==ContentType::Write
+                                                                                            || priority==ContentType::Read );
         Type=ContentType(priority);
         return data;
     }

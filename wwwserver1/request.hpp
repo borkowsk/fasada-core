@@ -29,8 +29,8 @@ struct request
   int http_version_major;
   int http_version_minor;
   std::vector<header> headers;
-  unsigned processed;//W.Borkowski
-  std::string posted_content;//W.Borkowski
+  unsigned processed;//de facto lenght of a header - W.Borkowski
+  std::string posted_content;//W.Borkowski maybe content?
 };
 
 } // namespace server

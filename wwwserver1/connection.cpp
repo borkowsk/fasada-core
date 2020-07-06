@@ -47,7 +47,7 @@ void connection::do_read()
       [this, self](boost::system::error_code ec, std::size_t bytes_transferred)
       {
         if (!ec)
-        {                                    assert(buffer_.max_size()>bytes_transferred);
+        {                                    //assert(buffer_.max_size()>bytes_transferred);//May happen??? YES! W.Borkowski
           request_parser::result_type result;
           std::tie(result, std::ignore) = request_parser_.parse(
               request_, buffer_.data(), buffer_.data() + bytes_transferred);
@@ -61,7 +61,7 @@ void connection::do_read()
                 begin+=request_.processed;
                 end+=bytes_transferred;
                 //std::cout<<"POSTed content... ";
-                request_.posted_content.reserve(bytes_transferred-request_.processed);
+                request_.posted_content.reserve(bytes_transferred-request_.processed);//posted_content is string
                 request_.posted_content.insert(request_.posted_content.begin(),begin,end);
                 //std::cout<<"N="<<request_.posted_content.size()<<std::endl;
             }

@@ -22,6 +22,7 @@
 #include "request.hpp"
 #include "reply.hpp"
 #include "fasada_types.h"
+#include "fasada_consts.h"
 #include "memory_pool.h"
 #include "mime_types.hpp"
 #include <boost/lexical_cast.hpp>
@@ -219,29 +220,31 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
 
 
         //Właściwa obsługa zapytania
-        string req_uri="http://"+host+":"+port;//DEBUG?
-        req_uri+=curr_request.uri.c_str();
+        string req_uri="http://"+host+":"+port+curr_request.uri.c_str();
 
         //Jeśli POST to trzeba umieścić dane MemoryPool
         if(curr_request.method=="POST" || curr_request.method=="post")
         {
            ShmCharAllocator charallocator(MyMemPool->get_segment_manager());
            std::cout<<"POST method detected!"<<std::endl;
+           req_uri+="?method=POST";
 
            //TRANSFERING THE POSTED DATA
-           ShmString *postedDataString = MyMemPool->construct<ShmString>( ("POSTED_"+req_uri).c_str() )(charallocator);
+           ShmString *postedDataString = MyMemPool->construct<ShmString>( (POSTED_BLOCK_MARK+req_uri).c_str() )(charallocator);
            *postedDataString+=curr_request.posted_content.c_str();
-           req_uri+="?method=POST";
            //for(auto a:*postedDataString)std::cout<<a;std::cout<<std::endl;//DEBUG
         }
 
-
-        std::cerr<<FasadaConnection->Name()<<" sending <<<"<<req_uri<<">>>"<<std::endl;
-
         if( req_uri.find("!",0)!=req_uri.npos )//marker że "zapis" to ! przed nazwą processora
+        {
+            std::cerr<<FasadaConnection->Name()<<" sending WRITE request <<<"<<req_uri<<">>>"<<std::endl;
             MyMemPool.send_request(req_uri,MemoryPool::ContentType::Write);
+        }
         else
+        {
+            std::cerr<<FasadaConnection->Name()<<" sending READ request <<<"<<req_uri<<">>>"<<std::endl;
             MyMemPool.send_request(req_uri,MemoryPool::ContentType::Read);
+        }
 
         //if(verbose)
             std::cerr<<FasadaConnection->Name()<<" waiting for response from 'fasada'..."<<std::endl;
@@ -260,7 +263,9 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
             //Albo nie zdążył odczytać?
             if(curr_request.method=="POST" || curr_request.method=="post")
             {
-                MyMemPool.free_data( ("POSTED_"+req_uri).c_str() );
+                string bname=POSTED_BLOCK_MARK;
+                bname+=req_uri;
+                MyMemPool.free_data( bname.c_str() );//SAFE. Jak już skasowane to po prostu zwraca false
             }
             return true; //COŚ ZOSTAŁO ODEBRANE - Z PUNKTU WIDZENIA SERWERA OK
                          //bo ma co wysyłać, więc może kontynuować LANG?

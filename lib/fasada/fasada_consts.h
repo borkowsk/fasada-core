@@ -28,6 +28,7 @@ const unsigned    MEM_POOL_SIZE=0xfffffff;
 const char* const PRIMARY_EMP="PrimaryServerEmp";
 
 ///Value of this const mark finish of any of tree-processors tasks.
+const char* const POSTED_BLOCK_MARK="HTTP_POSTED_";//Block marker for POSTed http data in memeory pool
 const char* const MEM_END="@T@h@e@E@n@d@";
 const char* const EXT_PRE="@E@X@T=";//See for MIME types:
       //https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types

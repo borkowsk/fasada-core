@@ -43,7 +43,7 @@ void connection::stop()
 void connection::do_read()
 {
   auto self(shared_from_this());
-  socket_.async_read_some(boost::asio::buffer(buffer_),
+  socket_.async_read_some( boost::asio::buffer(buffer_),
       [this, self](boost::system::error_code ec, std::size_t bytes_transferred)
       {
         if (!ec)

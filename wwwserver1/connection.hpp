@@ -21,6 +21,7 @@
 #include "request.hpp"
 #include "request_handler.hpp"
 #include "request_parser.hpp"
+#include "fasada_consts.h" //EXPECTED_HTTP_REQ_BUFFER_SIZE!!!
 
 namespace http {
 namespace server {
@@ -62,7 +63,7 @@ private:
   request_handler& request_handler_;
 
   /// Buffer for incoming data.
-  std::array<char, 8192> buffer_;
+  std::array<char, fasada::EXPECTED_HTTP_REQ_BUFFER_SIZE> buffer_;//Why was only 8192 ???
 
   /// The incoming request.
   request request_;

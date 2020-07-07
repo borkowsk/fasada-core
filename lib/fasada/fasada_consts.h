@@ -33,6 +33,8 @@ const char* const MEM_END="@T@h@e@E@n@d@";
 const char* const EXT_PRE="@E@X@T=";//See for MIME types:
       //https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
 
+const unsigned    EXPECTED_HTTP_REQ_BUFFER_SIZE=1024*1024*2;//WWW server must handle at least such size of POST request!
+
 ///Some values for html output
 #define STR_DEFAULT_LEN_OF_NAME "14"
 const unsigned UINT_DEFAULT_LEN_OF_NAME=14;

@@ -128,7 +128,7 @@ void _do_RorW_request(const string& request,fasada::MemoryPool& MyPool,bool isWr
         }
         catch(...)
         {
-             *stringToShare+=("UNEXPECTED ERROR @" + boost::lexical_cast<std::string>( __LINE__ )
+             *stringToShare+=(std::string(__FILE__) + "UNEXPECTED ERROR @" + boost::lexical_cast<std::string>( __LINE__ )
                               +MEM_END);
         }
     }

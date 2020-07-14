@@ -17,7 +17,10 @@
 #include "connection_manager.hpp"
 #include "request_handler.hpp"
 
-//#include <iostream> //DEBUG
+#include <boost/interprocess/exceptions.hpp>            //WB
+#include <boost/exception/diagnostic_information.hpp>   //WB
+
+#include <iostream> //DEBUG
 
 namespace http {
 namespace server {
@@ -60,10 +63,13 @@ void connection::do_read()
                 auto end=buffer_.data();
                 begin+=request_.processed;
                 end+=bytes_transferred;
-                //std::cout<<"POSTed content... ";
+                std::cout<<"\nPOSTed content: "<<bytes_transferred<<" - "<<request_.processed<<"  ";
+                if(bytes_transferred<=request_.processed)
+                    throw boost::interprocess::interprocess_exception("POST data not find in recived TCP block""!");
+
                 request_.posted_content.reserve(bytes_transferred-request_.processed);//posted_content is string
                 request_.posted_content.insert(request_.posted_content.begin(),begin,end);
-                //std::cout<<"N="<<request_.posted_content.size()<<std::endl;
+                std::cout<<"N="<<request_.posted_content.size()<<std::endl;
             }
             request_handler_.handle_request(request_, reply_);
             do_write();

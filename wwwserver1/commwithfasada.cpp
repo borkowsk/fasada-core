@@ -227,6 +227,9 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
         {
            ShmCharAllocator charallocator(MyMemPool->get_segment_manager());
            std::cout<<"POST method detected!"<<std::endl;
+           if(curr_request.posted_content.size()==0)
+               throw interprocess_exception("POST data not detected!");
+
            req_uri+="?method=POST";
 
            //TRANSFERING THE POSTED DATA
@@ -294,3 +297,67 @@ void set_host_and_port_for_fasada(const char* iHost,const char* iPort)// extern 
 
 } // namespace server
 } // namespace http
+
+
+/* CHROME INCOMPATIBILITY:
+==========================
+
+REQUEST-URI: /mouse-1734d86fbb844549d!
+METHOD: POST
+HTTP: 1.1
+Processed: 518
+HEADERS:
+        'Host' : localhost:8889
+        'Connection' : keep-alive
+        'Content-Length' : 1549
+        'User-Agent' : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+        'content-type' : text/plain
+        'Accept' : * / *
+        'Origin' : http://localhost:8889
+        'Sec-Fetch-Site' : same-origin
+        'Sec-Fetch-Mode' : cors
+        'Sec-Fetch-Dest' : empty
+        'Referer' : http://localhost:8889/MouseRegJs/index.html
+        'Accept-Encoding' : gzip, deflate, br
+        'Accept-Language' : pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7
+Request: /mouse-1734d86fbb844549d! is for FACJATA
+POST method detected!
+WWWSERVER1-18494 communication failed because 'POST data not detected!'
+Request: /mouse-1734d86fbb844549d! not handled
+
+REQUEST-URI: /POSTtest!
+METHOD: POST
+HTTP: 1.1
+Processed: 721
+HEADERS:
+        'Host' : localhost:8889
+        'Connection' : keep-alive
+        'Content-Length' : 29
+        'Cache-Control' : max-age=0
+        'Upgrade-Insecure-Requests' : 1
+        'Origin' : http://localhost:8889
+        'Content-Type' : application/x-www-form-urlencoded
+        'User-Agent' : Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36
+        'Accept' : text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,* / *;q=0.8,application/signed-exchange;v=b3;q=0.9
+        'Sec-Fetch-Site' : same-origin
+        'Sec-Fetch-Mode' : navigate
+        'Sec-Fetch-User' : ?1
+        'Sec-Fetch-Dest' : document
+        'Referer' : http://localhost:8889/post_test.html
+        'Accept-Encoding' : gzip, deflate, br
+        'Accept-Language' : pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7
+Request: /POSTtest! is for FACJATA
+POST method detected!
+WWWSERVER1-18494 sending WRITE request <<<http://localhost:8889/POSTtest!?method=POST>>>
+WWWSERVER1-18494 waiting for response from 'fasada'...
+(193) 'htm'
+
+Request: http://localhost:8889/POSTtest!?method=POST done.
+Content-Length : 62
+Content-Type : text/html
+
+      */
+
+
+
+

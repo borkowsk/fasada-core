@@ -2,8 +2,8 @@
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
-/// @copyright 2019
-/// @version 0.01
+/// @copyright 2019/2020
+/// @version 0.02.2020.07
 ///
 ///  See CURRENT licence file!
 ///
@@ -17,7 +17,7 @@
 /// This version work correctly with txt & html input from fasada and most type of common
 /// file types used in WWW communication.
 ///
-#define UNIT_IDENTIFIER "wwwserver-for-fasada"
+#define UNIT_IDENTIFIER "wwwserver-for-fasada_v02_202007"
 
 #include "request.hpp"
 #include "reply.hpp"
@@ -36,7 +36,7 @@ namespace server { //DO ZAMIANY NA "fasada"?
 
 using namespace fasada;
 
-const unsigned MILLISECONDS_BW=100;//ms for waiting for continuation of precessing outside wwwserver
+const unsigned MILLISECONDS_BW=200;//ms for waiting for continuation of precessing outside wwwserver
 const char     FINAL_CMD[128]="/!!!!";//SPECIAL!!!
 
 extern "C" //Te dwie funcje do eksportowania jako gole nazwy
@@ -99,7 +99,7 @@ static std::shared_ptr<FasadaKeepAndExit> FasadaConnection;
 
 static fasada::MemoryPool& do_when_first_time() //DZIWNA KONSTRUKCJA, ALE TYMCZASOWA BO BĘDZIE WIĘCEJ KOLEJEK i PROGRAMÓW Z Fasadą
 {
-    std::cout<<"Initialize connection with TREESERVER"<<std::endl;
+    std::cout<<string(UNIT_IDENTIFIER)<<" is initializing connection with SERVICE"<<std::endl;
     static fasada::MemoryPool MyHiddenPool; //To jest klient! Konstruktor bez parametru (NA RAZIE)
     FasadaConnection=std::shared_ptr<FasadaKeepAndExit>(new FasadaKeepAndExit(MyHiddenPool));
     return MyHiddenPool;
@@ -293,6 +293,7 @@ void set_host_and_port_for_fasada(const char* iHost,const char* iPort)// extern 
 {
     host=iHost;
     port=iPort;
+    std::cout<<"'"<<string(UNIT_IDENTIFIER)<<"' Host:"<<host<<" Port:"<<port<<std::endl;
 }
 
 } // namespace server

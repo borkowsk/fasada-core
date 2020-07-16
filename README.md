@@ -39,6 +39,13 @@ Alternatywny serwer WWW do przetestowania
 
 https://www.boost.org/doc/libs/1_73_0/libs/beast/example/advanced/server-flex/advanced_server_flex.cpp
 
+I inne przyklady:
+
+https://www.boost.org/doc/libs/1_73_0/libs/beast/doc/html/beast/examples.html
+
+https://www.boost.org/doc/libs/1_73_0/libs/beast/example/http/server/flex/http_server_flex.cpp
+
+
 Inne technikalia
 ================
 

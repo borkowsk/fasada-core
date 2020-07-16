@@ -34,6 +34,11 @@ Warto ją jednak też zainstalować:
 
 *__sudo apt-get install libmagic-dev__*
 
+Alternatywny serwer WWW do przetestowania
+=========================================
+
+https://www.boost.org/doc/libs/1_73_0/libs/beast/example/advanced/server-flex/advanced_server_flex.cpp
+
 Inne technikalia
 ================
 

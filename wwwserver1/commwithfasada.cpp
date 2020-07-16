@@ -17,7 +17,7 @@
 /// This version work correctly with txt & html input from fasada and most type of common
 /// file types used in WWW communication.
 ///
-#define UNIT_IDENTIFIER "wwwserver-for-fasada_v02_202007"
+#define UNIT_IDENTIFIER "wwwserver-for-fasada_v02_20200716"
 
 #include "request.hpp"
 #include "reply.hpp"
@@ -204,8 +204,15 @@ static void read_answer(reply& repl,ShmString* resp,const string& uri)
         FasadaConnection->Pool().free_data(uri.c_str());//Tylko wtedy mozna usunac obszar gdy produkcja została zakończona
 }
 
-//Only these 2 functions are globally visible:
+void do_exit()
+{
+    sleep(2);
+    FasadaConnection=nullptr;//deallocation means close connection with treeserver!
+    exit(-9999);//DEBUG exit of wwwserver
+}
 
+
+//Only these 2 functions are globally visible:
 bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // extern "C"
 {
     try
@@ -214,8 +221,11 @@ bool communicate_with_fasada(const request& curr_request, reply& curr_reply) // 
 
         if(curr_request.uri==FINAL_CMD)//SPECIAL!!!
         {
-            FasadaConnection=nullptr;//deallocation means close connection with treeserver!
-            exit(-9999);//DEBUG exit of wwwserver
+            std::thread spawn_wait_and_exit(do_exit);
+            spawn_wait_and_exit.detach();
+            curr_reply.status = reply::service_unavailable;
+            curr_reply.content="Server is going to close in 2 sec";
+            return true;
         }
 
 

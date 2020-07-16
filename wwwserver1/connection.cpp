@@ -64,11 +64,18 @@ void connection::do_read()
                 begin+=request_.processed;
                 end+=bytes_transferred;
                 std::cout<<"\nPOSTed content: "<<bytes_transferred<<" - "<<request_.processed<<"  ";
-                if(bytes_transferred<=request_.processed)
-                    throw boost::interprocess::interprocess_exception("POST data not find in recived TCP block""!");
 
-                request_.posted_content.reserve(bytes_transferred-request_.processed);//posted_content is string
-                request_.posted_content.insert(request_.posted_content.begin(),begin,end);
+                if(bytes_transferred<=request_.processed)
+                {
+                    std::cerr<<"POST data not find in recived TCP block!"<<std::endl;
+                    //throw boost::interprocess::interprocess_exception("POST data not find in recived TCP block""!");
+                }
+                else
+                {
+                    request_.posted_content.reserve(bytes_transferred-request_.processed);//posted_content is string
+                    request_.posted_content.insert(request_.posted_content.begin(),begin,end);
+                }
+
                 std::cout<<"N="<<request_.posted_content.size()<<std::endl;
             }
             request_handler_.handle_request(request_, reply_);

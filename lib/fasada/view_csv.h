@@ -1,9 +1,10 @@
 /// This file is a part of Fasada toolbox
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
-/// @copyright 2019
-/// 
-/// See licence file!
+/// @footnote Technical mail: <fasada.wb@gmail.com>
+/// @copyright 2019-2020
+/// @version 0.02
+///
 ///
 
 #ifndef PROCESSOR_viewCsv_H
@@ -31,4 +32,9 @@ class view_csv : public view_processor //Category READER
 
 }//namespace "fasada"
 
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif // PROCESSOR_viewCsv_H

@@ -3,7 +3,7 @@
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
 /// @copyright 2019/2020
-/// @version 0.02.2020.07
+/// @version 0.02.2020.11
 ///
 ///  See CURRENT licence file!
 ///
@@ -17,7 +17,11 @@
 /// This version work correctly with txt & html input from fasada and most type of common
 /// file types used in WWW communication.
 ///
-#define UNIT_IDENTIFIER "wwwserver-for-fasada_v02_20200716"
+/// Fasada-core is an open source shareware
+/// Please contact the author about licensing
+/// 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com
+
+#define UNIT_IDENTIFIER "wwwserver-for-fasada_v02_20201101"
 
 #include "request.hpp"
 #include "reply.hpp"

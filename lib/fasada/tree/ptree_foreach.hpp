@@ -365,4 +365,9 @@ void print_all_to(const ptree& pt,std::ostream& out/*=std::cout*/,std::string Se
 
 }//namespace "fasada"
 
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif // PTREE_FOREACH_HPP

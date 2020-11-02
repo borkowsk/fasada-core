@@ -1,5 +1,10 @@
 #ifndef PROCESSOR_CSV_H
 #define PROCESSOR_CSV_H
+/// @author Wojciech Borkowski <wborkowsk@gmail.com>
+/// @footnote Technical mail: <fasada.wb@gmail.com>
+/// @copyright 2019-2020
+/// @version 0.02
+
 
 #if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
@@ -25,4 +30,10 @@ protected://implementation
 };
 
 }
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif // PROCESSOR_CSV_H

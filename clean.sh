@@ -1,4 +1,8 @@
 #!/bin/bash
+# Fasada-core is an open source shareware
+# Please contact the author about licensing
+# 2020 (c) Wojciech Borkowski wborkowsk@gmail.com
+#
 source "lib/fasada/_config_template/screen.ini"
 echo -e $COLOR1"All non-needed files in '" `pwd` "' will be cleaned"$COLOR2
 echo -e "Press Ctrl-C in 4 seconds!"$NORMCO

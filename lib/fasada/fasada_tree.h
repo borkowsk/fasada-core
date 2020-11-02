@@ -1,9 +1,9 @@
 /// This file is a part of Fasada toolbox
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
-/// @copyright 2019
-/// 
-/// See licence file!
+/// @footnote Technical mail: <fasada.wb@gmail.com>
+/// @copyright 2019-2020
+/// @version 0.02
 ///
 
 #ifndef FASADA_TREE_H
@@ -23,4 +23,10 @@ namespace fasada
     const std::string& get_property(const pt::ptree& Node,const std::string& FasadaPropertyName,const std::string& WnenNotPresent);
     std::string  getNodePanel(const pt::ptree& node,const std::string& fullpath,URLparser& request);
 }//namespace "fasada"
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif

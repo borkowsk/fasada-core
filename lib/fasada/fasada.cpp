@@ -2,10 +2,8 @@
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
-/// @copyright 2019
-/// @version 0.01
-///
-///  See CURRENT licence file!
+/// @copyright 2019-2020
+/// @version 0.02
 ///
 
 #define UNIT_IDENTIFIER "Core_units"
@@ -20,3 +18,11 @@ const float _distribRe= DISTRIB_RELEASE ;
 const char* _version_str=FASADA_VERSION_STR;
 const float _version=FASADA_VERSION;
 }
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
+

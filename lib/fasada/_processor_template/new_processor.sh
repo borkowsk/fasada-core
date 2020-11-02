@@ -1,4 +1,8 @@
 #!/bin/bash
+# Fasada-core is an open source shareware
+# Please contact the author about licensing
+# 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com
+
 echo "$0 is a creator of new tree processors for fasada"
 echo "USAGE:"
 echo "$0 'class_name' 'base_class' 'fasada_name'"

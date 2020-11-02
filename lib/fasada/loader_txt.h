@@ -1,6 +1,10 @@
 #ifndef PROCESSOR_TXT_H
 #define PROCESSOR_TXT_H
-
+/// @author Wojciech Borkowski <wborkowsk@gmail.com>
+/// @footnote Technical mail: <fasada.wb@gmail.com>
+/// @copyright 2019-2020
+/// @version 0.02
+///
 #if defined(BOOST_HAS_PRAGMA_ONCE)
 #  pragma once
 #endif
@@ -25,4 +29,10 @@ protected://implementation
 };
 
 }
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif // PROCESSOR_TXT_H

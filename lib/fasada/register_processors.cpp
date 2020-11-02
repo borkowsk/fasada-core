@@ -2,10 +2,9 @@
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
-/// @copyright 2019
-/// @version 0.01
+/// @copyright 2019-2020
+/// @version 0.02
 ///
-/// See CURRENT licence file!
 ///
 
 //Procesory danych json w postaci STATYCZNYCH zmiennych lokalnych autorejestrowanych w konstruktorach
@@ -160,3 +159,12 @@ std::string  getNodePanel(const pt::ptree& node,const std::string& fullpath,URLp
 }
 
 }
+
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
+

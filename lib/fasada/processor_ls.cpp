@@ -2,10 +2,9 @@
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
-/// @copyright 2019
-/// @version 0.01
+/// @copyright 2019-2020
+/// @version 0.02
 ///
-///  See CURRENT licence file!
 ///
 #define UNIT_IDENTIFIER "processor_ls"
 #include "fasada.hpp"
@@ -182,3 +181,11 @@ void processor_ls::_implement_read(ShmString& o,const pt::ptree& top,URLparser& 
 
 
 }//namespace "fasada"
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
+

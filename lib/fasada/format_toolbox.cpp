@@ -2,10 +2,9 @@
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
 /// @footnote Technical mail: <fasada.wb@gmail.com>
-/// @copyright 2019
-/// @version 0.01
+/// @copyright 2019-2020
+/// @version 0.02
 ///
-///  See CURRENT licence file!
 ///
 /// See also: https://en.cppreference.com/w/cpp/preprocessor/replace
 ///
@@ -355,3 +354,11 @@ std::string format_toolbox::preprocessRawTxt(const std::string& str)
 }
 
 }//namespace "fasada"
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
+

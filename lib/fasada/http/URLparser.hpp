@@ -1,10 +1,8 @@
 /// This file is a part of Fasada toolbox
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
-/// @copyright 2019
+/// @copyright 2019-2020
 /// 
-/// See licence file!
-///
 /// @file "URLparser.hpp" - Fasada compatible URL parser
 ///
 #ifndef FACJATA_URL_PARSER_H
@@ -96,4 +94,11 @@ val_string& substitute_variables(const val_string& pattern,const std::map<key_st
 
 }//namespace "fasada"
 
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif //FACJATA_URL_PARSER_H

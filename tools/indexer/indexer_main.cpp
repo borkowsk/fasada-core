@@ -5,8 +5,9 @@
 /// @copyright 2019
 /// @version 0.01
 ///
-///  See CURRENT licence file!
-///
+/// Fasada-core is an open source shareware
+/// Please contact the author about licensing
+/// 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com
 
 // This is a directory indexer for user data downloaded from Facebook.
 // (author: Wojciech Borkowski)

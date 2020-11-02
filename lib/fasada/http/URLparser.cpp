@@ -1,6 +1,6 @@
 /// File "URLparser.cpp" - "fasada" compatible URL parser
 ///
-///
+
 #include "URLparser.hpp"
 #include <string>
 #include <iostream>
@@ -323,3 +323,9 @@ namespace fasada
     }
 
 }
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/

@@ -110,3 +110,11 @@ void processor_del::_implement_write(ShmString& o,pt::ptree& top,URLparser& requ
 }
 
 }//namespace "fasada"
+
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
+

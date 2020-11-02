@@ -1,9 +1,9 @@
 /// This file is a part of Fasada toolbox
 /// ---------------------------------------------------
 /// @author Wojciech Borkowski <wborkowsk@gmail.com>
-/// @copyright 2019
-/// 
-/// See licence file!
+/// @footnote Technical mail: <fasada.wb@gmail.com>
+/// @copyright 2019-2020
+/// @version 0.02
 ///
 
 #ifndef TREE_CONSTS_H
@@ -48,4 +48,10 @@ const unsigned UINT_WIDTH_MAX_OF_FIELD=80;
 #define STR_DEFAULT_FILTER "*"
 
 }//namespace "fasada"
+
+/**********************************************************************************************/
+/* Fasada-core is an open source shareware                                                    */
+/* Please contact the author about licensing                                                  */
+/* 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com                                     */
+/**********************************************************************************************/
 #endif // TREE_CONSTS_H

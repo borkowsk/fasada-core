@@ -64,10 +64,19 @@ CO ZROBIĆ GDY ZMIENI SIĘ NAZWA REPOZYTORIUM?
 https://www.linuxquestions.org/questions/programming-9/git-my-remote-repository-moved-how-do-i-tell-my-local-repo-to-use-the-new-one-781785/
 
 
-
+**Licencing**
 
 # Fasada-core is an open source shareware
-# Please contact the author about licensing
+# Please contact the author about licensing for scientific & commercial purposes
 # 2019 - 2020 (c) Wojciech Borkowski wborkowsk@gmail.com
+
+#You can use this software freely for educational and private purposes, but if you feel that it would be appropriate to repay somehow, please finance me a big coffee :-)
+
+https://www.paypal.com/paypalme/wborkowsk
+
+
+
+
+
 
 

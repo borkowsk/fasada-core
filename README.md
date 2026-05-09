@@ -7,6 +7,9 @@ FASADA to napisany w C++ zestaw bibliotek i aplikacji (mini-framework) umożliwi
 pomiędzy przystosowanymi programami, a za pośrednictwem własnego mini-serwera WWW także z dowolnymi programami 
 rozumiejącymi protokół HTTP, przynajmniej w sieci lokalnej.
 Komunikacja pomiędzy procesami w obrębie hosta odbywa się za pomoca pamięci współdzielonej więc jest bardzo szybka.
+<img src="./doc/renovation.gif" width="100" title="Under renovation">
+<img src="./doc/sleeping.gif" width="100" title="Suspended">
+
 
 # Wymagania
 
